@@ -1,5 +1,6 @@
 package com.gustavo.problemntoone.entities;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,7 +15,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_product")
-public class Product {
+public class Product implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,6 +52,14 @@ public class Product {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Set<Category> getCategories() {
+		return categories;
+	}
+	
+	public void setCategories(Set<Category> categories) {
+		this.categories = categories;
 	}
 
 	@Override

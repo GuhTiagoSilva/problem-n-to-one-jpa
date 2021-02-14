@@ -1,38 +1,29 @@
-package com.gustavo.problemntoone.entities;
+package com.gustavo.problemntoone.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import com.gustavo.problemntoone.entities.Category;
 
-@Entity
-@Table(name = "tb_category")
-public class Category implements Serializable {
+public class CategoryDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	private String name;
 	
-	@ManyToMany(mappedBy = "categories")
-	private List<Product> products = new ArrayList<>();
-	
-	public Category() {
+	public CategoryDTO() {
 		
 	}
 	
-	public Category(Integer id, String name) {
+	public CategoryDTO(Integer id, String name) {
 		this.id = id;
 		this.name = name;
+	}
+	
+	public CategoryDTO(Category entity) {
+		this.id = entity.getId();
+		this.name = entity.getName();
 	}
 
 	public Integer getId() {
@@ -67,7 +58,7 @@ public class Category implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		CategoryDTO other = (CategoryDTO) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -75,7 +66,4 @@ public class Category implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
 }
